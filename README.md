@@ -9,7 +9,7 @@ O Objetivo desse projeto é colocar em prática as seguintes tecnologias:
 
 ## Depois que seu ambiente docker e kubernetes estiver configurado
 
-você precisa ter o [k3d](https://community.chocolatey.org/packages/k3d/) instalado na sua máquina
+você precisa ter o <a href="https://community.chocolatey.org/packages/k3d" target="_blank">k3d</a> instalado na sua máquina
 
 Execute esse Comando de criação do cluster Kubernetes com o K3D
 
