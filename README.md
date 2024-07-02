@@ -1,7 +1,11 @@
-# Projeto conversão de temperatura
+## Tecnologias
 
-### Sobre o projeto
-O projeto conversão de temperatura é um projeto desenvolvido em NodeJS. O projeto tem como objetivo ser um exemplo para a criação de ambiente com containers usando NodeJS.
+O Objetivo desse projeto é colocar em prática as seguintes tecnologias:
 
-### Observações do projeto
-A aplicação é exposta usando a porta 8080
+- DOCKER
+- KUBERNETES
+- Pipelines inteligentes com Github Actions
+- Monitoramento com Prometheus e Grafana
+
+
+
