@@ -2,10 +2,24 @@
 
 O Objetivo desse projeto é colocar em prática as seguintes tecnologias:
 
-- DOCKER
-- KUBERNETES
+- Docker
+- Kubernetes
 - Pipelines inteligentes com Github Actions
 - Monitoramento com Prometheus e Grafana
 
+## Depois que seu ambiente docker e kubernetes estiver configurado
+
+link para instalar o [k3d](https://community.chocolatey.org/packages/k3d/)
+
+Execute esse Comando de criação do cluster Kubernetes com o K3D
+
+```
+k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
+```
+
+Você vai colar essa url no seu navegador
+```
+http://localhost:30000/
+```
 
 

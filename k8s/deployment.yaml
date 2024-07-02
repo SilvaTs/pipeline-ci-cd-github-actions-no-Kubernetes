@@ -19,6 +19,56 @@ spec:
           - name: POSTGRES_PASSWORD
             value: PasswOrd2024!
           - name: POSTGRES_USER
-            value: reviewfiles
+            value: reviewfilmes
+          - name: POSTGRES_DB
+            value: reviewfilmes
           ports:
             - containerPort: 5432
+---
+apiVersion: v1             
+kind: Service
+metadata:
+  name: postgre
+spec:
+  selector:
+    app: postgre
+  ports:
+  - port: 5432
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reviewfilmes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reviewfilmes
+  template: 
+    metadata:
+      labels: 
+        app: reviewfilmes
+    spec:
+      containers:
+        - name: reviewfilmes
+          image: silvats/review-filmes:v1.0.0
+          env: 
+          - name: ASPNETCORE_HTTP_PORTS
+            value: "8080"
+          - name: ConnectionStrings__DefaultConnection
+            value: "Host=postgre;Database=reviewfilmes;UserName=reviewfilmes;Password=PasswOrd2024!"          
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1             
+kind: Service
+metadata:
+  name: reviewfilmes
+spec:
+  selector:
+    app: reviewfilmes
+  ports:
+  - port: 80
+    targetPort: 8080
+    nodePort: 30000
+  type: NodePort
