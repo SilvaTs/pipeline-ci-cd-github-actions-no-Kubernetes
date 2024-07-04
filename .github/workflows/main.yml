@@ -9,12 +9,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo "Checkout do código fonte"
-        uses: actions/checkout@v4.1.7        
+        uses: actions/checkout@v4.1.7     
+
+      - name: Login no Docker Hub
+        uses: docker/login-action@v3.2.0
+        with: 
+          userName: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
       - name: Passo 01
         run: echo "Construir a imagem da aplicação"
       - name: Passo 02
         run: echo "Publicar a imagem no Docker Hub"
-
+      
+      - name: Construção da imagem docker e envio para o docker hub
+        uses: docker/build-push-action@v6.2.0
+        with:
+          context: ./src
+          push: true
+          file: ./src/Review-Filmes.Web/Dockerfile
+          tags: |
+            silvats/review-filmes:v${{ github.number }}
+            silvats/review-filmes:latest
   CD:
     runs-on: ubuntu-latest
     needs: [CI]
