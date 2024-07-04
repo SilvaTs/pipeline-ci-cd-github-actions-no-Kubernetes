@@ -8,6 +8,14 @@ jobs:
   CI:
     runs-on: ubuntu-latest
     steps:
+      - name: echo "Checkout do código fonte"
+        uses: actions/checkout@v4.1.7     
+
+      - name: Login no Docker Hub
+        uses: docker/login-action@v3.2.0
+        with: 
+          userName: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
       - name: Passo 01
         run: echo "Construir a imagem da aplicação"
       - name: Passo 02
