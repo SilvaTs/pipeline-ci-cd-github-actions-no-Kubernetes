@@ -28,7 +28,7 @@ jobs:
           push: true
           file: ./src/Review-Filmes.Web/Dockerfile
           tags: |
-            silvats/review-filmes:v${{ github.number }}
+            silvats/review-filmes:v${{ github.run_number }}
             silvats/review-filmes:latest
   CD:
     runs-on: ubuntu-latest
