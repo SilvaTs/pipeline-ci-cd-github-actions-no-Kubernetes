@@ -34,6 +34,24 @@ jobs:
     runs-on: ubuntu-latest
     needs: [CI]
     steps:
-      - name: Passo 01
-        run: echo "Deploy da aplicação"
-      
+      - name: Checkout code
+        uses: actions/checkout@v4.1.7
+
+      - name: Generate temporary kubeconfig 
+        run: |
+          kubectl get secret $(kubectl get serviceaccount ci-cd-sa -o jsonpath='{.secrets[].name}') -o jsonpath='{.data.token}' | base64 -d > /tmp/kubeconfig
+        env:
+          KUBECONFIG: /tmp/kubeconfig
+
+      - name: Install k3d
+        run: |
+          curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
+
+      - name: Create k3d cluster
+        run: k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer" --wait
+
+      - name: Apply Kubernetes manifests
+        run: kubectl apply -f k8s/deployment.yaml
+
+      - name: Wait for deployment rollout
+        run: kubectl rollout status deployment/my-app -n default
