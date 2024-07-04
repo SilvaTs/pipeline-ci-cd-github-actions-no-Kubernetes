@@ -4,7 +4,7 @@ O Objetivo desse projeto é colocar em prática as seguintes tecnologias:
 
 - Docker
 - Kubernetes
-- Pipelines inteligentes com Github Actions
+- Pipelines com Github Actions
 - Monitoramento com Prometheus e Grafana
 
 ## Depois que seu ambiente docker e kubernetes estiver configurado

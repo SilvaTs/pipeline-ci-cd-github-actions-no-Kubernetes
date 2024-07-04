@@ -22,14 +22,6 @@ namespace Review_Filmes.Web.Controllers
 			return View();
 		}
 
-
-		//[HttpGet]
-		//public IEnumerable<Filme> Get()
-		//{
-		//    var resultado = this._context.Filmes.ToList();
-		//    return resultado;
-		//}
-
 		[HttpGet("filme/{id}", Name = "GetFilme")]
 		public IActionResult Get(int id)
 		{
@@ -62,5 +54,4 @@ namespace Review_Filmes.Web.Controllers
 			return RedirectToAction(actionName: "Get", controllerName: "Filme", new { id = review.FilmeID });
 		}
 	}
-
 }
