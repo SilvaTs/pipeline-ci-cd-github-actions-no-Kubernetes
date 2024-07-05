@@ -53,12 +53,12 @@ Você vai colar essa url no seu navegador
 http://localhost:3000/
 ```
 
-Para pegar a senhar do usuario admin grafana
+Para pegar a senha do usuário admin grafana
 ```
 kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 ```
 
-Se você estiver com ficuldade de pegar do user admin grafana em um ambiente windows execute esse comando
+Se você estiver com dificuldade para pegar a senha do usuário admin grafana em um ambiente windows execute esse comando
 ```
 $base64password = kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}"
 [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($base64password))
